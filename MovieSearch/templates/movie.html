@@ -1,0 +1,72 @@
+
+{% extends 'base.html' %}
+{% block content %}
+  {% if not user_name == None %}
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li id="home_li" class="active"><a onclick="show_home()">Home</a></li>
+            <li id="watched_movie_li" class=""><a onclick="show_watchedMovie()">Watched Movie</a></li>
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a > Welcome {{ user_name }} </a></li>
+            <li><a href="logout">Logout</a></li>
+
+          </ul>
+        </div>
+      </nav>
+  {% endif %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-sm-offset-3">
+        {% for message in messages %}
+        <p{% if message.tags == "success" %} class="alert alert-success" {% else %} class="alert alert-danger" {% endif %}> {{ message }}</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div id="home" class="movie_container" >
+    <div class="form">
+      <form action="movie.html" method="POST" >
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" value="Search" onclick="show_search()">Search </button>
+      </form>
+    </div>
+    <h2 class="text-center">{{ msg }}</h2>
+    <br>
+    {% for m in movie %}
+      {% if not m.poster_path == None %}
+      <div class="col-lg-4 box-movie"  >
+        <img src="https://image.tmdb.org/t/p/w342{{m.poster_path}}">
+        <div><a class="btn btn-outline-success" href="movie.html/{{m.id}}">Watched</a></div>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div id="watched_movie" class="movie_container" style="display:none">
+    {% if not msg2 == None %}
+    <h2 class="text-center">{{ msg2 }}</h2>
+    {% endif %}
+    <br>
+    {% for m in watched_movie %}
+      {% if not m.path == None %}
+
+      <div class="col-lg-4 box-movie">
+        <img src="https://image.tmdb.org/t/p/w342{{m.path}}">
+        <div><a class="btn btn-outline-danger " href="movie.html/r{{m.movie_id}}">Remove</a></div>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div>
+  <footer class="footer">
+    <div class="container">
+
+
+      <span class="text-muted text-center">This product uses the TMDb API but is not endorsed or certified by TMDb.</span>
+    </div>
+  </footer>
+  </div>
+{% endblock %}

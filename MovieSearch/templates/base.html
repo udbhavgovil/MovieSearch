@@ -1,0 +1,42 @@
+<html>
+<head>
+  <!-- Latest compiled and minified CSS -->
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static "MovieSearch/css/style.css" %}">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  var active = "home";
+  function show_home ()
+  {
+    console.log("1");
+    document.getElementById(active).style.display = "none";
+    document.getElementById("home").style.display = "block";
+    document.getElementById("home_li").className = 'active'
+    document.getElementById(active+"_li").className = '';
+    active = "home";
+  }
+  function show_watchedMovie ()
+  {
+    console.log("2");
+    document.getElementById(active).style.display = "none";
+    document.getElementById("watched_movie").style.display = "block";
+    document.getElementById("watched_movie_li").className = 'active'
+    document.getElementById(active+"_li").className = '';
+    active = "watched_movie";
+  }
+
+
+</script>
+</head>
+    <body>
+        <div>
+            {% block content %}{% endblock %}
+        </div>
+        
+    </body>
+</html>
