@@ -20,6 +20,6 @@ pythonz-bd==1.11.4
 requests==2.18.4
 shutilwhich==1.1.0
 six==1.11.0
-urllib3==1.22
+urllib3==1.24.2
 virtualenv==15.1.0
 virtualenv-clone==0.2.6
