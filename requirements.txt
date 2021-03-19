@@ -4,7 +4,7 @@ chardet==3.0.4
 click==6.7
 configparser==3.5.0
 Django==1.11.23
-djangorestframework==3.6.4
+djangorestframework==3.11.2
 enum34==1.1.6
 first==2.0.1
 flake8==3.4.1
